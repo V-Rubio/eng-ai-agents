@@ -10,6 +10,12 @@ WORKDIR /opt
 ENV RYE_HOME="/opt/rye"
 ENV PATH="$RYE_HOME/shims:$PATH"
 
+# Add this line to install dpkg (if using a Debian-based image)
+RUN apt-get update && apt-get install -y dpkg
+
+# The Quarto installation part (adjusted for arm64)
+RUN curl -LO https://quarto.org/download/latest/quarto-linux-arm64.deb && dpkg -i quarto-linux-arm64.deb
+
 # hadolint ignore=DL3008
 RUN \
     --mount=type=cache,target=/var/lib/apt/lists \
@@ -82,9 +88,12 @@ ENV RYE_HOME="/opt/rye"
 ENV PATH="$RYE_HOME/shims:$PATH"
 
 # Quarto
-RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
-    dpkg -i quarto-linux-amd64.deb
+#RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
+    #dpkg -i quarto-linux-amd64.deb
 #RUN quarto install tinytex
+
+# Replace the current Quarto installation step with this
+RUN curl -LO https://quarto.org/download/latest/quarto-linux-arm64.deb && dpkg -i quarto-linux-arm64.deb
 
 ENV PYTHONUNBUFFERED True
 

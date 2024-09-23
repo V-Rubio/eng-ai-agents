@@ -9,18 +9,19 @@ services:
       shm_size: '8gb'  # Shared memory size
       user: vscode
       command: /bin/sh -c "while sleep 1000; do :; done"
+      privileged: true
       # depends_on:
       #   - minio
         #- postgresml
-      environment:
-      - NVIDIA_VISIBLE_DEVICES=all  # or specify GPUs as 0,1 for specific devices
-      deploy:
-        resources:
-          reservations:
-            devices:
-            - driver: nvidia
-              capabilities: ["gpu"]
-              device_ids: ["all"]  # Specify GPU IDs if needed, or 'all' to use all available GPUs
+      # environment:
+      # - NVIDIA_VISIBLE_DEVICES=all  # or specify GPUs as 0,1 for specific devices
+      # deploy:
+      #  resources:
+          # reservations:
+          #   devices:
+          #   - driver: nvidia
+          #     capabilities: ["gpu"]
+          #     device_ids: ["all"]  # Specify GPU IDs if needed, or 'all' to use all available GPUs
       networks:
         - eng-ai-agents-net
       
