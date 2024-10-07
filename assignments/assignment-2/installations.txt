@@ -1,0 +1,8 @@
+pip install torch pandas matplotlib
+
+gunzip /Users/vi.rubio/eng-ai-agents/assignments/assignment-2/kaggle/*.gz
+
+pip install jupyter
+jupyter notebook
+
+
