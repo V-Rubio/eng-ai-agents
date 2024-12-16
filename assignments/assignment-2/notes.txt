@@ -1,12 +1,16 @@
 # Copy the docker compose yaml original and paste
 
 docker images
-docker ps
+
+#See running containers
+docker ps 
 docker ps -a
 docker ps --filter "ancestor=eng-ai-agents"
 docker volume ls
 
 python3 -m venv assignment2_venv
+
+source venv/bin/activate
 source assignment2_venv/bin/activate
 
 pip install --upgrade setuptools wheel
